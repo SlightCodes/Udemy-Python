@@ -118,3 +118,217 @@
 #     response = input("say something:")
 #     if (response == 'bye'):
 #         break
+
+#----our fist GUI-------
+
+picture = [
+[0,0,0,1,0,0,0],
+[0,0,1,1,1,0,0],
+[0,1,1,1,1,1,0],
+[1,1,1,1,1,1,1],
+[0,0,0,1,0,0,0],
+[0,0,0,1,0,0,0]
+]
+
+i = 0
+
+#my way
+# for nestedList in picture:
+#         for pixel in nestedList:
+#             if pixel == 0:
+#                 pixel = ' '
+#             else:
+#                 pixel = '*'
+#             print(pixel, end='')
+#         print("")
+
+#instructor way
+
+# for row in picture:
+#     for pixel in row:
+#         if (pixel == 1):
+#             print('*', end='')
+#         else:
+#             print(' ', end='')
+#     print("")
+
+
+
+#print(picture[0])
+
+#------check for duplicates in a list--------
+
+# some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+# some_list.sort()
+#
+# duplicates = []
+#
+# for duplicate in some_list:
+#     if some_list.count(duplicate) > 1:
+#         if duplicate not in duplicates:
+#             duplicates.append(duplicate)
+#
+# print(duplicates)
+
+#-------functions------------
+
+# def say_hello():
+#     print("hello")
+# say_hello()
+# say_hello()
+
+#-----arguments and parameters------
+
+#parameters - positional
+# def say_hello(name, emoji):
+#     print(f"hello {name} {emoji}")
+#
+# #arguments - positional
+# say_hello("Nick", ":)") # call, invoking
+# say_hello("Andrei", ":)")
+# say_hello("Emily", ":)")
+
+#keyword arguments
+# say_hello(emoji=":)", name='Nick')
+
+#default parameters
+# def say_hello(name = 'Darth Vader', emoji=':0'):
+#     print(f"hello {name} {emoji}")
+#
+# #arguments - positional
+# say_hello("Nick", ":)") # call, invoking
+# say_hello("Andrei", ":)")
+# say_hello("Emily", ":)")
+# say_hello()
+# say_hello("timmy")
+
+#-------return---------
+# def sum(num1, num2):
+#     def another_function(num1, num2):
+#         return num1 + num2 # must use return so that you can exit the function
+#     return another_function(num1, num2)
+# # a function should do 1 thing really well, a function should return something
+#
+# total = sum(10, 20) #you can pass additional arguments and store them in variables
+# print(total)
+
+#---------methods vs functions------------
+
+#methods are owned by an object or a datatype
+
+#------docstrings ---------
+
+# def test(a):
+#     '''
+#     Info: this function test and prints param a
+#     '''
+#     print(a)
+# print(test.__doc__)
+
+#-------clean code-----------
+
+# def is_even(num):
+#     return num % 2 == 0
+#
+# print(is_even(8))
+
+
+#----*args & *kwargs--------
+#
+# def super_func(name, *args, i='hi', **kwargs): #adding * allows you to enter any number of positional arguments
+#     total = 0
+#     print(args) #creates a tuple
+#     print(kwargs) #creates a dictionary
+#     for items in kwargs.values():
+#         total += items
+#     return sum(args) + total
+#
+# print(super_func('Nick', 1,2,3,4,5, num1=5, num2=10))
+#
+# #Rule: first we have our params, then *args, default parameters, then **kwargs
+
+#----------functions exercise---------
+
+# def highest_even(li):
+#     evens = []
+#
+#     for even in li:
+#         if even % 2 == 0:
+#             evens.append(even)
+#     return max(evens)
+#
+#
+#
+# print(highest_even([10,2,3,4,8,11]))
+
+#-----walrus operator--------
+
+#assigns values to variables as a part of a larger expression
+
+# a = 'hellloooooooo'
+#
+# if ((n := len(a)) > 10): #does not work with the current version of python installed
+#     print(f"too long {len(n)} elements")
+
+#--------scope---------
+#scope - what variables do I have access to
+
+# def sum_func():
+#  total = 100 #global scope
+#
+# print(total) #total is no longer a part of the scope
+
+# a = 1
+# def parent():
+#     a = 10 #parent function, we create a new function confusion, we're returning a, it will check the child function and then go up a level to check the parent function for the variable
+#     def confusion():
+#         return a
+#     return confusion()
+#
+# print(a)
+# print(parent())
+#
+# #1 - start with local
+# #2 - Parent local?
+# #3 - Global
+# #4 - built in python functions.
+
+# a = 10
+#
+# def confusion(b): #parameters are considered local variables
+#     print(b)
+#     a = 90
+#
+# confusion(300)
+
+# total = 0
+#
+# def count(): #we must declare global if we want to use the outiside total variable, otherwise the function would reset everytime we ran the count function and it would equal 1 (if total is declared inside of the function)
+#     global total #we can also create total as the parameter
+#     total+= 1
+#     return total
+#
+# count()
+# count()
+# print(count())
+total = 0
+
+# def count(total):  #we can also create total as the parameter
+#     total+= 1
+#     return total
+#
+#
+# print(count(count(count(total)))) #works without using the global keyword
+#
+
+#-----non local keyword------
+
+# def outer():
+#     x = "local" #variable is local to the outer function
+#     def inner():
+#         nonlocal x # modified the scope with the nonlocal keyword
+#         x = 'nonlocal'
+#         print("inner", x)
+#     inner()
+#     print("outer", x)
+# outer()
