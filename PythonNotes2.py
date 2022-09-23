@@ -332,3 +332,98 @@ total = 0
 #     inner()
 #     print("outer", x)
 # outer()
+
+#------OOP---------
+#everything is built by class keywords
+#OOP allows us to go beyond the data types that python gives us
+#up until this point we have only written procedural code
+
+# class BigObject: #class
+#     pass #code
+#
+# obj1 = BigObject()
+#
+# print(type(obj1))
+
+#class is a blueprint that can be instantiated into different instances (objects)
+
+#----creating our own objects------
+
+# class PlayerCharacter:
+#     membership = True #class object attribute (static no dynamic)
+#     def __init__(self, name='anon', age=0): #this init method is a special method, the two underscores indicate a dunder method (often called a constructor method).
+#                       #self refers to the player character, we want self.name to = whatever the parameter is
+#        if (age > 18):
+#         self.name = name  #self allows us to reference something that hasn't been created yet.
+#         self.age = age #name and age are both attributes
+#     def run(self):
+#         print('run')
+#         return 'done'
+#
+#     def shout(self):
+#         print(f'my name is {self.name}')
+#
+# player1 = PlayerCharacter('Cindy', 44)
+# player2 = PlayerCharacter('Tom', 21)
+# player2.attack = 50 # create method attack
+#
+# print(player1) #able to use one blueprint to create two different players in different locations of memory
+# print(player2.shout())
+
+#----OOP Exercise------
+
+#Given the below class:
+
+# class Cat:
+#     species = 'mammal'
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#
+# # 1 Instantiate the Cat object with 3 cats
+#
+# cat_1 = Cat('Bhoori',6)
+# cat_2 = Cat(name='Skyee',age=5)
+# cat_3 =Cat('Shori',16)
+# # 2 Create a function that finds the oldest cat
+#
+# def age_finder(cats_obj):
+#     '''Pass cats as an object a list'''
+#     cat_names=[]
+#     ages=[]
+#
+#     for cat in cats_obj:
+#         cat_names.append(cat.name)
+#         ages.append(int(cat.age))
+#     print(f"{cat_names[ages.index(max(ages))]} is the oldest cat with {max(ages)} years")
+
+
+# 3 Print out: "The oldest cat is x years old.". x will be the oldest \
+# cat age by using the function in #2
+# age_finder([cat_1,cat_2,cat_3])
+
+#------@classmethod, @staticmethod------
+
+# class PlayerCharacter:
+#     membership = True
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def shout(self):
+#         print(f'my name is {self.name}')
+#
+#     @classmethod #we can use cls to instantiate an object inside of the function (cls is the player character)
+#     def adding_things(cls, num1, num2):
+#         return cls('Teddy', num1 + num2)
+#
+#     @staticmethod  # we can use cls to instantiate an object inside of the function (cls is the player character)
+#     def adding_things(cls, num1, num2):
+#         return cls('Teddy', num1 + num2)
+#
+#
+# player1 = PlayerCharacter('Tom', 20)
+# player3 = PlayerCharacter.adding_things(2,3) #cls is the 3rd hidden argument in the syntax error, unless we add an additional arg in the function
+#
+# print(player3.name) #created an instance of a player using @classmethod
