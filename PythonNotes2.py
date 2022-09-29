@@ -427,3 +427,119 @@ total = 0
 # player3 = PlayerCharacter.adding_things(2,3) #cls is the 3rd hidden argument in the syntax error, unless we add an additional arg in the function
 #
 # print(player3.name) #created an instance of a player using @classmethod
+
+#----Inheritance------
+
+#users can be wizards, or Archers, ect.
+# class User():
+#     def sign_in(self):
+#         print('logged in')
+#
+# class Wizard(User): #insert class User to inherit the class
+#     def __init__(self, name, power):
+#         self.name = name
+#         self.power = power
+#
+#     def attack(self):
+#         print(f'attacking with power of {self.power}')
+#
+#
+# class Archer(User):
+#     def __init__(self, name, num_arrows):
+#          self.name = name
+#         self.num_arrows = num_arrows
+#
+#     def attack(self):
+#         print(f'attacking with arrows: arrows left - {self.num_arrows}')
+#
+# wizard1 = Wizard('Merlin', 50)
+# archer1 = Archer('Robin', 100)
+# def player_attack(char):
+#     char.attack()
+# player_attack(wizard1)
+
+# wizard1 = Wizard('Merlin', 50)
+# archer1 = Archer('Robin', 100)
+# #wizard1.attack()
+# #archer1.attack()
+# print(wizard1.sign_in())
+# print(archer1.sign_in())
+# print(isinstance(wizard1, User))
+
+# class Toy():
+#     def __init__(self, color, age):
+#         self.color = color
+#         self.age = age
+#         self.my_dict = { 'name': 'yoyo', 'pets': False}
+#
+#     def __str__(self):
+#         return f"{self.color}"
+#
+#     def __len__(self):
+#         return 5
+#
+#     def __del__(self):
+#         return print('deleted!')
+#
+#     def __call__(self):
+#         return('yes??')
+#
+#     def __getitem__(self, i):
+#         return self.my_dict[i]
+#
+# action_figure = Toy('red', 0)
+# print(action_figure.__str__())
+# #--same as print(str(action_figure)
+# print(len(action_figure))
+# print(action_figure())
+# print(action_figure['name'])
+# del action_figure
+
+# class SuperList(list):
+#
+#
+#     def __len__(self):
+#         return 1000
+#
+# super_list1 = SuperList()
+#
+# super_list1.append(5)
+# print(super_list1[0])
+# print(type(super_list1))
+# print(len(super_list1))
+#
+# print(issubclass(SuperList,list))
+
+class User():
+    def sign_in(self):
+        print('logged in')
+
+class Wizard(User): #insert class User to inherit the class
+    def __init__(self, name, power):
+        self.name = name
+        self.power = power
+
+    def attack(self):
+        print(f'attacking with power of {self.power}')
+
+
+class Archer(User):
+    def __init__(self, name, num_arrows):
+         self.name = name
+         self.num_arrows = num_arrows
+
+    def attack(self):
+        print(f'attacking with arrows: arrows left - {self.num_arrows}')
+
+    def run(self):
+        print('ran really fast')
+
+class HybridBorg(Wizard, Archer):
+    def __init__(self, name, power, num_arrows):
+        Archer.__init__(self,name, num_arrows)
+        Wizard.__init__(self, name, power)
+
+hb1 = HybridBorg('borgie',50,100)
+print(hb1.num_arrows)
+print(hb1.attack())
+print(hb1.sign_in())
