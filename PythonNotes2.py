@@ -311,7 +311,7 @@ i = 0
 # count()
 # count()
 # print(count())
-total = 0
+#total = 0
 
 # def count(total):  #we can also create total as the parameter
 #     total+= 1
@@ -510,36 +510,151 @@ total = 0
 #
 # print(issubclass(SuperList,list))
 
-class User():
-    def sign_in(self):
-        print('logged in')
+# class User():
+#     def sign_in(self):
+#         print('logged in')
+#
+# class Wizard(User): #insert class User to inherit the class
+#     def __init__(self, name, power):
+#         self.name = name
+#         self.power = power
+#
+#     def attack(self):
+#         print(f'attacking with power of {self.power}')
+#
+#
+# class Archer(User):
+#     def __init__(self, name, num_arrows):
+#          self.name = name
+#          self.num_arrows = num_arrows
+#
+#     def attack(self):
+#         print(f'attacking with arrows: arrows left - {self.num_arrows}')
+#
+#     def run(self):
+#         print('ran really fast')
+#
+# class HybridBorg(Wizard, Archer):
+#     def __init__(self, name, power, num_arrows):
+#         Archer.__init__(self,name, num_arrows)
+#         Wizard.__init__(self, name, power)
+#
+# hb1 = HybridBorg('borgie',50,100)
+# print(hb1.num_arrows)
+# print(hb1.attack())
+# print(hb1.sign_in())
 
-class Wizard(User): #insert class User to inherit the class
-    def __init__(self, name, power):
-        self.name = name
-        self.power = power
+#------MRO---------------
+# class A:
+#     num = 10
+# class B(A):
+#     pass
+# class C(A):
+#     num = 1
+# class D(B, C):
+#     pass
+#
+# print(D.mro())
+# D.__str__
 
-    def attack(self):
-        print(f'attacking with power of {self.power}')
+#----------------------------------
 
+#ideally we contain our functions and make them pure
+#keep data and functions separate
+# def multiply_by2(li):
+#     new_list = []
+#     for item in li:
+#         new_list.append(item * 2)
+#     return new_list
+#
+# print(multiply_by2([1,2,3]))
 
-class Archer(User):
-    def __init__(self, name, num_arrows):
-         self.name = name
-         self.num_arrows = num_arrows
+#------map, filter, zip, and reduce--------
 
-    def attack(self):
-        print(f'attacking with arrows: arrows left - {self.num_arrows}')
+#--------------------map------------
+# my_list = [1,2,3]
+# def multiply_by2(item):
+#     return item * 2
+#
+# print(list(map(multiply_by2, my_list)))
+# # map will call the function
+# # this function will take each item and return a new map object which we convert into a list
+# # map will create a new list object and won't affect my_list
 
-    def run(self):
-        print('ran really fast')
+#-------------filter-------------------
 
-class HybridBorg(Wizard, Archer):
-    def __init__(self, name, power, num_arrows):
-        Archer.__init__(self,name, num_arrows)
-        Wizard.__init__(self, name, power)
+# my_list = [1,2,3]
+# def multiply_by2(item):
+#     return item * 2
+#
+# def only_odd(item):
+#     return item % 2 != 0
+#
+# print(list(filter(only_odd, my_list)))
 
-hb1 = HybridBorg('borgie',50,100)
-print(hb1.num_arrows)
-print(hb1.attack())
-print(hb1.sign_in())
+#--------------------zip------------------
+
+# my_list = [1,2,3]
+# your_list = [10,20,30]
+# def multiply_by2(item):
+#     return item * 2
+#
+# def only_odd(item):
+#     return item % 2 != 0
+#
+#
+# print(list(zip(my_list, your_list)))
+#
+# #zip takes the two iterables starting at the first item from each and zips them together
+
+#-------------------reduce-----------------
+
+# from functools import reduce
+# my_list = [1,2,3]
+# def multiply_by2(item):
+#     return item * 2
+#
+# def only_odd(item):
+#     return item % 2 != 0
+#
+# def accumulator(acc, item):
+#     print(acc, item)
+#     return acc + item
+#
+# print(reduce(accumulator, my_list, 10))
+#----------------functional 1----------------------
+
+from functools import reduce
+
+#1 Capitalize all of the pet names and print the list
+my_pets = ['sisi', 'bibi', 'titi', 'carla']
+def capitalize(name):
+    return name.upper()
+
+print(list(map(capitalize, my_pets)))
+
+#2 Zip the 2 lists into a list of tuples, but sort the numbers from lowest to highest.
+
+my_strings = ['a', 'b', 'c', 'd', 'e']
+my_numbers = [5,4,3,2,1]
+
+my_numbers.sort()
+
+print(list(zip(my_strings, my_numbers)))
+
+#3 Filter the scores that pass over 50%
+scores = [73, 20, 65, 19, 76, 100, 88]
+
+def passing(item):
+    return item > 50
+
+print(list(filter(passing, scores)))
+
+#4 Combine all of the numbers that are in a list on this file using reduce (my_numbers and scores). What is the total?
+
+new_list = my_numbers + scores
+
+def accumulator(acc, item):
+    return acc + item
+
+print(reduce(accumulator, new_list, 0))
